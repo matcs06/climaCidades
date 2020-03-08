@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
-import WatherScreen from "../screens/WeatherScreen";
 
 const Input = props => {
   const [city, setCity] = useState("");
