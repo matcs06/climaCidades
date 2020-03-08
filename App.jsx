@@ -7,12 +7,11 @@ import {
   Keyboard,
   Button,
   ImageBackground,
-  TextInput,
-  Alert,
-  FlatList
+  TextInput
 } from "react-native";
 import Input from "./components/Input";
 import ButtonCust from "./components/ButtonCust";
+import ShowWeather from "./screens/ShowWeather";
 import axios from "axios";
 
 export default function App() {
@@ -24,7 +23,6 @@ export default function App() {
   const [tempmin, setTempmin] = useState("");
   const [temp, setTemp] = useState("");
   const [status, setStatus] = useState("");
-  let output;
 
   useEffect(() => {
     setCity("");
@@ -33,7 +31,7 @@ export default function App() {
     setTempmax("");
     setTempmin("");
     setStatus("");
-  }, []);
+  }, [buttonPressed]);
 
   const buttonPressed = () => {
     getWeather(city, country);
@@ -58,9 +56,7 @@ export default function App() {
     setTemp("Temperatura Atual: " + response.main.temp);
     setTempmax("Máxima: " + response.main.temp_max);
     setTempmin("Mínima: " + response.main.temp_min);
-    setStatus("Status: " + response.weather[0].description);
-
-    console.log(response);
+    setStatus(response.weather[0].description);
   };
 
   const cityInputHandler = city => {
@@ -99,14 +95,14 @@ export default function App() {
             </View>
           </View>
           <ButtonCust color="purple" text="Search" onPress={buttonPressed} />
-          <View>
-            <Text>{cityname}</Text>
-            <Text> {temp}</Text>
-            <Text> {tempmin}</Text>
-            <Text> {tempmax}</Text>
-            <Text> {status}</Text>
-          </View>
         </View>
+        <ShowWeather
+          city={cityname}
+          temp={temp}
+          tempmax={tempmax}
+          tempmin={tempmin}
+          status={status}
+        />
       </ImageBackground>
     </TouchableWithoutFeedback>
   );
