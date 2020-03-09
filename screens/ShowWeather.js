@@ -6,15 +6,15 @@ const ShowWeather = props => {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.text}>{city} </Text>
+      <View style={styles.city}>
+        <Text style={[styles.text, styles.cityText]}>{city} </Text>
       </View>
-      <View>
-        <Text style={styles.text}>{temp}</Text>
+      <View style={styles.temp}>
+        <Text style={styles.textCurrTemp}>{temp}</Text>
       </View>
       <View style={styles.max_min}>
-        <Text style={styles.text}>{tempmax}</Text>
-        <Text style={styles.text}>{tempmin}</Text>
+        <Text style={styles.tempMin_Max}>{tempmin}</Text>
+        <Text style={styles.tempMin_Max}>{tempmax}</Text>
       </View>
       <View style={styles.status}>
         <Text style={styles.text}>{status}</Text>
@@ -33,15 +33,9 @@ const styles = StyleSheet.create({
     marginBottom: 200,
     padding: 10,
     borderColor: "white",
-    borderWidth: 3,
-    borderRadius: 10
-  },
-
-  max_min: {
-    marginVertical: 20,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-evenly"
+    borderWidth: 1,
+    borderRadius: 10,
+    elevation: 3
   },
 
   text: {
@@ -49,8 +43,38 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold"
   },
-  status: {
-    justifyContent: "flex-start"
+  city: {
+    marginBottom: 60
+  },
+  temp: {
+    marginBottom: 10
+  },
+  max_min: {
+    marginBottom: 10,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-evenly"
+  },
+
+  status: {},
+
+  cityText: {
+    fontStyle: "italic",
+    fontFamily: "serif",
+    fontSize: 35
+  },
+  textCurrTemp: {
+    fontSize: 40,
+    color: "white",
+    fontFamily: "sans-serif",
+    fontWeight: "bold"
+  },
+
+  tempMin_Max: {
+    fontFamily: "sans-serif",
+    fontWeight: "bold",
+    color: "white",
+    fontSize: 25
   }
 });
 export default ShowWeather;

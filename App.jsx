@@ -7,7 +7,8 @@ import {
   Keyboard,
   Button,
   ImageBackground,
-  TextInput
+  TextInput,
+  Alert
 } from "react-native";
 import Input from "./components/Input";
 import ButtonCust from "./components/ButtonCust";
@@ -34,6 +35,10 @@ export default function App() {
   }, [buttonPressed]);
 
   const buttonPressed = () => {
+    if (city === "") {
+      Alert.alert("Insira o nome de uma cidade!!!");
+      return;
+    }
     getWeather(city, country);
   };
 
@@ -52,10 +57,11 @@ export default function App() {
 
     const response = await res.data;
 
-    setCityName(response.name);
-    setTemp("Temperatura Atual: " + response.main.temp);
-    setTempmax("Máxima: " + response.main.temp_max);
-    setTempmin("Mínima: " + response.main.temp_min);
+    setCityName(response.name + ", " + response.sys.country);
+
+    setTemp(response.main.temp + "" + "°");
+    setTempmax(response.main.temp_max + "" + "°");
+    setTempmin(response.main.temp_min + "" + "°");
     setStatus(response.weather[0].description);
   };
 
