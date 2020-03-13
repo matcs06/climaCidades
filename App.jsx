@@ -13,6 +13,7 @@ import {
 import Input from "./components/Input";
 import ButtonCust from "./components/ButtonCust";
 import ShowWeather from "./screens/ShowWeather";
+import apiKey from "./apikey";
 import axios from "axios";
 
 export default function App() {
@@ -47,7 +48,7 @@ export default function App() {
       "http://api.openweathermap.org/data/2.5/weather",
       {
         params: {
-          appid: "b40e673f474c40cc06a8992efdb1e988",
+          appid: apiKey,
           units: "metric",
           lang: "pt",
           q: city + "," + country
@@ -80,7 +81,7 @@ export default function App() {
       }}
     >
       <ImageBackground
-        source={require("./images/wallpaperflare.com_wallpaper.jpg")}
+        source={require("./images/222.png")}
         style={{ width: "100%", height: "100%" }}
       >
         <View style={styles.container}>
